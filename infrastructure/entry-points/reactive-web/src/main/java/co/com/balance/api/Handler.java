@@ -1,5 +1,6 @@
 package co.com.balance.api;
 
+import co.com.balance.model.account.Account;
 import co.com.balance.model.balance.Balance;
 import co.com.balance.model.movements.Movements;
 import co.com.balance.usecase.balance.BalanceUseCase;
@@ -26,5 +27,11 @@ public class Handler {
         Mono<Movements>  result =  balanceUseCase.geMovements();
         return ServerResponse.ok().body(result, Movements.class);
 
+    }
+
+    public Mono<ServerResponse> getBalanceAndMovents(ServerRequest serverRequest) {
+
+        Mono<Account>  result =  balanceUseCase.getBalanceAndMovements();
+        return ServerResponse.ok().body(result, Account.class);
     }
 }
